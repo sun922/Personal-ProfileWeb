@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProfileWeb</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- 폰트 성능 최적화: preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <!-- 구글 폰트 추가: Inter는 모던하고 가독성이 좋은 폰트 -->
@@ -181,7 +184,7 @@
                             <div class="contact-icon">🐙</div> <!-- 문어 이모지: GitHub 로고 -->
                             <div class="contact-details">
                                 <h3>GitHub</h3>
-                                <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github.com/yourusername</a>
                             </div>
                         </div>
                         
@@ -189,7 +192,7 @@
                             <div class="contact-icon">💼</div> <!-- 서류가방 이모지: 전문성 -->
                             <div class="contact-details">
                                 <h3>LinkedIn</h3>
-                                <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
+                                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourusername</a>
                             </div>
                         </div>
                     </div>
@@ -207,7 +210,7 @@
                             <div class="form-group">
                                 <textarea placeholder="💭 메시지" class="form-textarea"></textarea> <!-- 생각 이모지: 아이디어 -->
                             </div>
-                            <button type="submit" class="btn btn-primary">📤 보내기</button> <!-- 전송 이모지: 발송 -->
+                            <button type="button" class="btn btn-primary" id="contactSubmit">📤 보내기</button> <!-- 전송 이모지: 발송 -->
                         </form>
                     </div>
                 </div>

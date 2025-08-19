@@ -712,6 +712,28 @@ body {
     outline-offset: 2px;               /* 아웃라인 오프셋: 2px */
 }
 
+/* 접근성: 키보드 포커스가 보이도록 */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 모션 민감 사용자 배려 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 이미지가 부모를 넘치지 않도록 */
+img { max-width: 100%; height: auto; }
+
+/* 플로팅 카드 그림자 약간 줄여 성능 개선 */
+.floating-card { will-change: transform; }
+
 /* 로딩 애니메이션 */
 .loading {
     opacity: 0;                /* 초기: 투명 */
@@ -747,6 +769,7 @@ body {
   }
   .modal-box {
     padding: 2rem;
+    overflow: hidden;
   }
   .modal-title {
     font-size: 1.25rem;
@@ -757,8 +780,7 @@ body {
   .modal-content {
     color: var(--gray-600);
     line-height: 1.5;
-  
-    max-height: 50vh;           /* 브라우저 70%까지만 내용 표시 */
+    max-height: 50vh;           
     overflow-y: auto;           /* 세로 스크롤은 여기서만 */
     overflow-x: hidden;         /* 가로 스크롤은 없앰 */
     padding: 1rem;              /* 안쪽 여백 */
