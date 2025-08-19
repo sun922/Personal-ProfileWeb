@@ -1,202 +1,721 @@
 /* ========================================
-   CSS 리셋 (CSS Reset)
+   CSS 변수 정의 (테마 컬러)
    ======================================== */
-/* 모든 브라우저에서 일관된 스타일을 보장하기 위해 기본 마진과 패딩을 제거 */
-* {
-    margin: 0;        /* 모든 요소의 바깥 여백을 0으로 설정 */
-    padding: 0;       /* 모든 요소의 안쪽 여백을 0으로 설정 */
-    box-sizing: border-box;  /* 요소의 크기 계산 방식을 변경
-                                width와 height에 padding과 border를 포함 */
-}
-
-/* ========================================
-   기본 페이지 스타일
-   ======================================== */
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    /* 폰트 설정: 
-       1. 'Inter' - 구글 폰트 (한글 지원)
-       2. -apple-system - macOS의 시스템 폰트
-       3. BlinkMacSystemFont - Chrome의 시스템 폰트
-       4. sans-serif - 위 폰트들이 없을 때 사용할 기본 sans-serif 폰트 */
+:root {
+    /* 메인 컬러: 이미지에서 본 것처럼 깔끔하고 모던한 색상 */
+    --primary: #3B82F6;        /* 파란색: 신뢰와 전문성 */
+    --primary-dark: #2563EB;   /* 진한 파란색: 호버 효과용 */
+    --primary-light: #DBEAFE;  /* 연한 파란색: 포커스 효과용 */
     
-    line-height: 1.6;        /* 줄 간격: 1.6은 텍스트 가독성을 높이는 표준값 */
-    color: #374151;          /* 텍스트 색상: 진한 회색 (접근성을 고려한 색상) */
-    background-color: #ffffff; /* 배경색: 흰색 */
+    /* 보조 컬러: 이미지의 아이콘들처럼 다양한 컬러 */
+    --secondary: #10B981;      /* 초록색: 성장과 성공 */
+    --accent-orange: #F59E0B;  /* 주황색: 에너지와 열정 */
+    --accent-pink: #EC4899;    /* 핑크색: 창의성과 혁신 */
+    --accent-yellow: #F59E0B;  /* 노란색: 밝음과 긍정 */
+    --accent-purple: #8B5CF6;  /* 보라색: 창의성과 영감 */
+    
+    /* 중성 컬러: 깔끔한 흰색 배경과 대비되는 텍스트 */
+    --white: #FFFFFF;          /* 순백색: 깔끔함 */
+    --gray-50: #F9FAFB;        /* 매우 연한 회색: 섹션 구분 */
+    --gray-100: #F3F4F6;       /* 연한 회색: 배경 */
+    --gray-200: #E5E7EB;       /* 중간 회색: 테두리 */
+    --gray-300: #D1D5DB;       /* 중간 회색: 아이콘 */
+    --gray-400: #9CA3AF;       /* 진한 회색: 보조 텍스트 */
+    --gray-500: #6B7280;       /* 진한 회색: 본문 텍스트 */
+    --gray-600: #4B5563;       /* 매우 진한 회색: 제목 */
+    --gray-700: #374151;       /* 매우 진한 회색: 강조 텍스트 */
+    --gray-800: #1F2937;       /* 거의 검은색: 메인 제목 */
+    --gray-900: #111827;       /* 검은색: 최고 강조 */
+    
+    /* 그림자: 미묘하고 세련된 그림자 효과 */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);   /* 작은 그림자 */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* 중간 그림자 */
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* 큰 그림자 */
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1); /* 매우 큰 그림자 */
+    
+    /* 둥근 모서리: 이미지의 아이콘들처럼 부드럽고 친근한 느낌 */
+    --radius-sm: 0.375rem;     /* 작은 둥근 모서리: 6px */
+    --radius-md: 0.5rem;       /* 중간 둥근 모서리: 8px */
+    --radius-lg: 0.75rem;      /* 큰 둥근 모서리: 12px */
+    --radius-xl: 1rem;         /* 매우 큰 둥근 모서리: 16px */
+    --radius-2xl: 1.5rem;      /* 가장 큰 둥근 모서리: 24px */
+    
+    /* 트랜지션: 부드럽고 자연스러운 애니메이션 */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 이징 */
 }
 
 /* ========================================
-   레이아웃 컨테이너
+   기본 리셋 및 기본 스타일
+   ======================================== */
+* {
+    margin: 0;                 /* 모든 요소의 기본 마진 제거 */
+    padding: 0;                /* 모든 요소의 기본 패딩 제거 */
+    box-sizing: border-box;    /* 패딩과 테두리를 요소 크기에 포함 */
+}
+
+html {
+    scroll-behavior: smooth;   /* 부드러운 스크롤 효과 */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* 폰트 설정: Inter는 모던하고 가독성이 좋은 폰트 */
+    
+    line-height: 1.6;         /* 줄 간격: 가독성을 높이는 표준값 */
+    color: var(--gray-700);   /* 텍스트 색상: 진한 회색으로 가독성 확보 */
+    background-color: var(--white); /* 배경색: 깔끔한 흰색 */
+    overflow-x: hidden;       /* 가로 스크롤 방지 */
+}
+
+/* ========================================
+   공통 유틸리티 클래스
    ======================================== */
 .container {
-    max-width: 1200px;       /* 최대 너비: 데스크톱에서 너무 넓어지지 않도록 제한 */
-    margin: 0 auto;          /* 좌우 중앙 정렬: 0은 위아래, auto는 좌우 자동 */
-    padding: 0 20px;         /* 좌우 패딩: 모바일에서 콘텐츠가 화면 가장자리에 붙지 않도록 */
+    max-width: 1200px;        /* 최대 너비: 데스크톱에서 적절한 가독성 */
+    margin: 0 auto;           /* 좌우 중앙 정렬 */
+    padding: 0 1.5rem;        /* 좌우 패딩: 모바일에서 여백 확보 */
+}
+
+.section-title {
+    font-size: 2.5rem;        /* 섹션 제목 크기: 충분한 임팩트 */
+    font-weight: 700;         /* 폰트 굵기: 굵게 */
+    color: var(--gray-800);   /* 제목 색상: 진한 회색 */
+    text-align: center;       /* 중앙 정렬 */
+    margin-bottom: 3rem;      /* 아래 여백: 다음 콘텐츠와의 간격 */
+    position: relative;       /* 위치 기준점 설정 */
+}
+
+.title-icon {
+    display: inline-block;    /* 인라인 블록: 이모지와 텍스트를 한 줄에 배치 */
+    margin-right: 0.5rem;     /* 오른쪽 여백: 이모지와 텍스트 사이 간격 */
+    font-size: 2rem;          /* 이모지 크기: 제목보다 작게 */
 }
 
 /* ========================================
    헤더 스타일
    ======================================== */
-header {
-    background-color: #ffffff;    /* 헤더 배경색: 흰색 */
-    padding: 1rem 0;             /* 위아래 패딩: 1rem = 16px (기본 폰트 크기 기준) */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 그림자 효과: 
-                                                0 2px 4px는 x축 y축 블러 스프레드
-                                                rgba(0,0,0,0.1)는 검은색 10% 투명도 */
+.header {
+    position: fixed;          /* 상단 고정: 스크롤해도 항상 보임 */
+    top: 0;                  /* 상단에 고정 */
+    left: 0;                 /* 왼쪽 정렬 */
+    right: 0;                /* 오른쪽까지 확장 */
+    background: rgba(255, 255, 255, 0.95); /* 반투명 배경: 블러 효과와 함께 */
+    backdrop-filter: blur(10px); /* 블러 효과: 모던한 느낌 */
+    border-bottom: 1px solid var(--gray-200); /* 하단 테두리: 구분선 */
+    z-index: 1000;           /* 다른 요소들 위에 표시 */
+    transition: var(--transition); /* 부드러운 변화 */
 }
 
-/* 네비게이션 메뉴 스타일 */
-nav ul {
-    list-style: none;            /* 목록 점 제거 */
-    display: flex;               /* 플렉스박스 레이아웃: 요소들을 가로로 배치 */
-    justify-content: center;     /* 가로 중앙 정렬 */
-    gap: 2rem;                  /* 요소 간 간격: 2rem = 32px */
+.nav-container {
+    display: flex;            /* 플렉스박스 레이아웃 */
+    justify-content: space-between; /* 좌우 끝 정렬 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    padding: 1rem 1.5rem;     /* 안쪽 여백 */
+    max-width: 1200px;        /* 최대 너비 */
+    margin: 0 auto;           /* 중앙 정렬 */
 }
 
-/* 네비게이션 링크 스타일 */
-nav a {
-    text-decoration: none;       /* 밑줄 제거 */
-    color: #374151;              /* 링크 색상: 진한 회색 */
-    font-weight: 500;            /* 폰트 굵기: 500은 medium */
-    transition: color 0.3s;      /* 색상 변화 애니메이션: 0.3초 동안 부드럽게 */
+.logo {
+    display: flex;            /* 플렉스박스: 이모지와 텍스트를 가로로 배치 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    gap: 0.5rem;             /* 요소 간 간격 */
+    font-weight: 700;         /* 폰트 굵기: 굵게 */
+    font-size: 1.25rem;      /* 폰트 크기 */
+    color: var(--gray-800);   /* 색상: 진한 회색 */
 }
 
-/* 네비게이션 링크 호버 효과 */
-nav a:hover {
-    color: #3B82F6;             /* 마우스 올렸을 때 파란색으로 변경 */
+.logo-icon {
+    font-size: 1.5rem;       /* 로고 이모지 크기 */
+}
+
+.nav-menu {
+    display: flex;            /* 플렉스박스: 메뉴 항목들을 가로로 배치 */
+    list-style: none;         /* 목록 점 제거 */
+    gap: 2rem;               /* 메뉴 항목 간 간격 */
+}
+
+.nav-link {
+    text-decoration: none;    /* 밑줄 제거 */
+    color: var(--gray-600);   /* 링크 색상: 중간 회색 */
+    font-weight: 500;         /* 폰트 굵기: 중간 */
+    transition: var(--transition); /* 부드러운 색상 변화 */
+    position: relative;       /* 위치 기준점: 호버 효과용 */
+}
+
+.nav-link:hover {
+    color: var(--primary);    /* 호버 시 색상: 파란색 */
+}
+
+/* 네비게이션 링크 호버 효과: 밑줄이 왼쪽에서 오른쪽으로 확장 */
+.nav-link::after {
+    content: '';              /* 가상 요소 내용 */
+    position: absolute;       /* 절대 위치 */
+    bottom: -5px;            /* 링크 아래 5px */
+    left: 0;                 /* 왼쪽 정렬 */
+    width: 0;                /* 초기 너비: 0 */
+    height: 2px;             /* 높이: 2px */
+    background: var(--primary); /* 배경색: 파란색 */
+    transition: var(--transition); /* 부드러운 너비 변화 */
+}
+
+.nav-link:hover::after {
+    width: 100%;             /* 호버 시 너비: 100% */
 }
 
 /* ========================================
-   섹션 공통 스타일
+   Hero 섹션 스타일
    ======================================== */
-section {
-    padding: 4rem 0;            /* 위아래 패딩: 4rem = 64px (섹션 간 여백) */
+.hero {
+    padding: 8rem 0 4rem;    /* 위아래 패딩: 헤더 높이만큼 위쪽 여백 추가 */
+    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);  /* 파란색 계열 */
+    position: relative;       /* 위치 기준점: 플로팅 카드용 */
+    overflow: hidden;         /* 넘치는 요소 숨김 */
 }
 
-/* 섹션 제목 스타일 */
-section h2 {
-    color: #1F2937;             /* 제목 색상: 매우 진한 회색 */
-    margin-bottom: 1.5rem;      /* 아래쪽 여백: 1.5rem = 24px */
-    font-size: 2rem;            /* 폰트 크기: 2rem = 32px */
+.hero-container {
+    display: grid;            /* CSS 그리드 레이아웃 */
+    grid-template-columns: 1fr 1fr; /* 2개 컬럼: 동일한 너비 */
+    gap: 4rem;               /* 컬럼 간 간격 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    max-width: 1200px;        /* 최대 너비 */
+    margin: 0 auto;           /* 중앙 정렬 */
+    padding: 0 1.5rem;        /* 좌우 패딩 */
+}
+
+.hero-title {
+    font-size: 3.5rem;        /* 제목 크기: 매우 크게 */
+    font-weight: 700;         /* 폰트 굵기: 굵게 */
+    color: var(--gray-800);   /* 제목 색상: 진한 회색 */
+    margin-bottom: 1.5rem;    /* 아래 여백 */
+    line-height: 1.2;         /* 줄 간격: 제목용으로 좁게 */
+}
+
+/* 손 흔드는 이모지 애니메이션 */
+.wave {
+    display: inline-block;    /* 인라인 블록: 애니메이션 적용 가능 */
+    animation: wave 2s infinite; /* 애니메이션: 2초마다 반복 */
+    transform-origin: 70% 70%; /* 회전 중심점: 손목 부분 */
+}
+
+@keyframes wave {
+    0%, 20%, 50%, 80%, 100% {
+        transform: rotate(0deg);   /* 시작, 중간, 끝: 원래 각도 */
+    }
+    40% {
+        transform: rotate(20deg);  /* 40% 지점: 오른쪽으로 20도 */
+    }
+    60% {
+        transform: rotate(-15deg); /* 60% 지점: 왼쪽으로 15도 */
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;       /* 부제목 크기 */
+    color: var(--gray-600);    /* 부제목 색상: 중간 회색 */
+    margin-bottom: 2rem;       /* 아래 여백 */
+    line-height: 1.6;          /* 줄 간격 */
+}
+
+/* 하이라이트: 중요한 키워드 강조 */
+.highlight {
+    color: var(--primary);     /* 색상: 파란색 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+}
+
+.hero-actions {
+    display: flex;             /* 플렉스박스: 버튼들을 가로로 배치 */
+    gap: 1rem;                /* 버튼 간 간격 */
+    flex-wrap: wrap;           /* 줄바꿈: 모바일에서 세로로 배치 */
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;  /* 안쪽 여백: 위아래 12px, 좌우 24px */
+    border: none;              /* 테두리 제거 */
+    border-radius: var(--radius-lg); /* 둥근 모서리 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+    text-decoration: none;     /* 밑줄 제거 */
+    display: inline-flex;      /* 인라인 플렉스: 이모지와 텍스트 정렬 */
+    align-items: center;       /* 세로 중앙 정렬 */
+    justify-content: center;   /* 가로 중앙 정렬 */
+    cursor: pointer;           /* 커서: 포인터 */
+    transition: var(--transition); /* 부드러운 변화 */
+    font-size: 1rem;          /* 폰트 크기 */
+}
+
+.btn-primary {
+    background: var(--primary); /* 배경색: 파란색 */
+    color: var(--white);       /* 텍스트 색상: 흰색 */
+    box-shadow: var(--shadow-md); /* 그림자 효과 */
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark); /* 호버 시: 진한 파란색 */
+    transform: translateY(-2px);     /* 위로 2px 이동 */
+    box-shadow: var(--shadow-lg);   /* 더 큰 그림자 */
+}
+
+.btn-secondary {
+    background: var(--white);   /* 배경색: 흰색 */
+    color: var(--primary);      /* 텍스트 색상: 파란색 */
+    border: 2px solid var(--primary); /* 테두리: 파란색 2px */
+}
+
+.btn-secondary:hover {
+    background: var(--primary);  /* 호버 시: 파란색 배경 */
+    color: var(--white);        /* 호버 시: 흰색 텍스트 */
+    transform: translateY(-2px); /* 위로 2px 이동 */
+}
+
+/* 플로팅 카드 애니메이션: Hero 섹션의 시각적 요소 */
+.hero-visual {
+    position: relative;        /* 위치 기준점 */
+    height: 400px;            /* 높이: 고정 */
+}
+
+.floating-card {
+    position: absolute;        /* 절대 위치: 부모 요소 기준 */
+    background: var(--white);  /* 배경색: 흰색 */
+    padding: 1.5rem;          /* 안쪽 여백 */
+    border-radius: var(--radius-xl); /* 둥근 모서리 */
+    box-shadow: var(--shadow-lg); /* 그림자 효과 */
+    font-size: 2rem;          /* 이모지 크기 */
+    animation: float 6s ease-in-out infinite; /* 플로팅 애니메이션 */
+}
+
+/* 각 카드의 위치와 애니메이션 지연 시간 */
+.card-1 {
+    top: 20%;                 /* 위에서 20% */
+    left: 10%;                /* 왼쪽에서 10% */
+    animation-delay: 0s;      /* 애니메이션 지연: 없음 */
+}
+
+.card-2 {
+    top: 50%;                 /* 위에서 50% */
+    right: 20%;               /* 오른쪽에서 20% */
+    animation-delay: 2s;      /* 애니메이션 지연: 2초 */
+}
+
+.card-3 {
+    bottom: 20%;              /* 아래에서 20% */
+    left: 30%;                /* 왼쪽에서 30% */
+    animation-delay: 4s;      /* 애니메이션 지연: 4초 */
+}
+
+/* 플로팅 애니메이션: 위아래로 부드럽게 움직임 */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px); /* 시작과 끝: 원래 위치 */
+    }
+    50% {
+        transform: translateY(-20px); /* 중간: 위로 20px */
+    }
 }
 
 /* ========================================
-   Hero 섹션 스타일 (메인 소개)
+   About 섹션 스타일
    ======================================== */
-#hero {
-    text-align: center;         /* 텍스트 중앙 정렬 */
-    padding: 6rem 0;            /* 위아래 패딩: 6rem = 96px (더 큰 여백으로 중요성 강조) */
-    background-color: #f8fafc;  /* 배경색: 매우 연한 회색 (섹션 구분) */
+.about {
+    padding: 6rem 0;          /* 위아래 패딩 */
+    background: var(--white);  /* 배경색: 흰색 */
 }
 
-/* Hero 제목 스타일 */
-#hero h1 {
-    font-size: 3rem;            /* 폰트 크기: 3rem = 48px (가장 큰 제목) */
-    color: #1F2937;             /* 제목 색상: 매우 진한 회색 */
-    margin-bottom: 1rem;        /* 아래쪽 여백: 1rem = 16px */
+.about-content {
+    display: grid;             /* CSS 그리드 레이아웃 */
+    grid-template-columns: 2fr 1fr; /* 2:1 비율로 컬럼 분할 */
+    gap: 4rem;                /* 컬럼 간 간격 */
+    align-items: start;        /* 세로 정렬: 상단 */
 }
 
-/* Hero 부제목 스타일 */
-#hero p {
-    font-size: 1.25rem;         /* 폰트 크기: 1.25rem = 20px */
-    color: #6B7280;             /* 텍스트 색상: 중간 회색 (제목보다 덜 강조) */
+.about-text p {
+    font-size: 1.125rem;      /* 텍스트 크기 */
+    color: var(--gray-600);    /* 텍스트 색상: 중간 회색 */
+    margin-bottom: 1.5rem;     /* 아래 여백 */
+    line-height: 1.7;          /* 줄 간격 */
+}
+
+.about-text strong {
+    color: var(--primary);     /* 강조 텍스트 색상: 파란색 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+}
+
+.about-stats {
+    display: grid;             /* CSS 그리드: 통계 항목들을 세로로 배치 */
+    gap: 1.5rem;              /* 항목 간 간격 */
+}
+
+.stat-item {
+    text-align: center;        /* 텍스트 중앙 정렬 */
+    padding: 1.5rem;          /* 안쪽 여백 */
+    background: var(--gray-50); /* 배경색: 연한 회색 */
+    border-radius: var(--radius-lg); /* 둥근 모서리 */
+    border: 1px solid var(--gray-200); /* 테두리 */
+    transition: var(--transition); /* 부드러운 변화 */
+}
+
+.stat-item:hover {
+    transform: translateY(-5px); /* 호버 시: 위로 5px 이동 */
+    box-shadow: var(--shadow-lg); /* 더 큰 그림자 */
+}
+
+.stat-number {
+    font-size: 2.5rem;        /* 숫자 크기: 매우 크게 */
+    font-weight: 700;          /* 폰트 굵기: 굵게 */
+    color: var(--primary);     /* 색상: 파란색 */
+    margin-bottom: 0.5rem;     /* 아래 여백 */
+}
+
+.stat-label {
+    color: var(--gray-600);    /* 라벨 색상: 중간 회색 */
+    font-weight: 500;          /* 폰트 굵기: 중간 */
 }
 
 /* ========================================
    Skills 섹션 스타일
    ======================================== */
-#skills ul {
-    list-style: none;           /* 목록 점 제거 */
-    display: grid;              /* CSS 그리드 레이아웃 사용 */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* 그리드 컬럼 설정:
-       auto-fit: 가능한 많은 컬럼을 자동으로 생성
-       minmax(200px, 1fr): 최소 200px, 최대 1fr(남은 공간의 1/1) */
-    gap: 1rem;                  /* 그리드 아이템 간 간격: 1rem = 16px */
+.skills {
+    padding: 6rem 0;          /* 위아래 패딩 */
+    background: var(--gray-50); /* 배경색: 연한 회색 (섹션 구분) */
 }
 
-/* Skills 각 항목 스타일 */
-#skills li {
-    background-color: #f8fafc;  /* 배경색: 연한 회색 */
-    padding: 1rem;              /* 안쪽 여백: 1rem = 16px */
-    border-radius: 8px;         /* 모서리 둥글게: 8px */
-    text-align: center;         /* 텍스트 중앙 정렬 */
-    border: 1px solid #e5e7eb;  /* 테두리: 1px 두께, 연한 회색 */
+.skills-grid {
+    display: grid;             /* CSS 그리드 레이아웃 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* 자동 컬럼: 최소 250px, 자동으로 컬럼 수 조정 */
+    gap: 2rem;                /* 그리드 아이템 간 간격 */
 }
+
+.skill-card {
+    background: var(--white);  /* 배경색: 흰색 */
+    padding: 2rem;            /* 안쪽 여백 */
+    border-radius: var(--radius-xl); /* 둥근 모서리 */
+    box-shadow: var(--shadow-md); /* 그림자 효과 */
+    text-align: center;        /* 텍스트 중앙 정렬 */
+    transition: var(--transition); /* 부드러운 변화 */
+    border: 1px solid var(--gray-200); /* 테두리 */
+}
+
+.skill-card:hover {
+    transform: translateY(-10px); /* 호버 시: 위로 10px 이동 */
+    box-shadow: var(--shadow-xl); /* 더 큰 그림자 */
+}
+
+.skill-icon {
+    font-size: 3rem;          /* 이모지 크기: 매우 크게 */
+    margin-bottom: 1rem;      /* 아래 여백 */
+}
+
+.skill-title {
+    font-size: 1.25rem;       /* 제목 크기 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+    color: var(--gray-800);    /* 제목 색상: 진한 회색 */
+    margin-bottom: 0.5rem;     /* 아래 여백 */
+}
+
+.skill-desc {
+    color: var(--gray-600);    /* 설명 색상: 중간 회색 */
+    margin-bottom: 1.5rem;     /* 아래 여백 */
+}
+
+.skill-level {
+    background: var(--gray-200); /* 배경색: 중간 회색 */
+    height: 8px;               /* 높이: 8px */
+    border-radius: var(--radius-sm); /* 둥근 모서리 */
+    overflow: hidden;          /* 넘치는 부분 숨김 */
+}
+
+.skill-bar {
+    height: 100%;              /* 높이: 부모 요소의 100% */
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    /* 그라데이션: 파란색에서 초록색으로 */
+    border-radius: var(--radius-sm); /* 둥근 모서리 */
+    transition: width 1s ease-in-out; /* 너비 변화 애니메이션 */
+}
+
+/* JavaScript로 레벨 설정: 각 기술별 숙련도 표시 */
+.skill-bar[data-level="85"] { width: 85%; }
+.skill-bar[data-level="70"] { width: 70%; }
+.skill-bar[data-level="80"] { width: 80%; }
+.skill-bar[data-level="90"] { width: 90%; }
 
 /* ========================================
    Contact 섹션 스타일
    ======================================== */
-#contact {
-    background-color: #f8fafc;  /* 배경색: 연한 회색 (Skills와 구분) */
+.contact {
+    padding: 6rem 0;          /* 위아래 패딩 */
+    background: var(--white);  /* 배경색: 흰색 */
 }
 
-/* Contact 링크 스타일 */
-#contact a {
-    color: #3B82F6;             /* 링크 색상: 파란색 */
-    text-decoration: none;      /* 밑줄 제거 */
+.contact-content {
+    display: grid;             /* CSS 그리드 레이아웃 */
+    grid-template-columns: 1fr 1fr; /* 1:1 비율로 컬럼 분할 */
+    gap: 4rem;                /* 컬럼 간 간격 */
 }
 
-/* Contact 링크 호버 효과 */
-#contact a:hover {
-    text-decoration: underline; /* 마우스 올렸을 때 밑줄 표시 */
+.contact-info {
+    display: grid;             /* CSS 그리드: 연락처 항목들을 세로로 배치 */
+    gap: 2rem;                /* 항목 간 간격 */
+}
+
+.contact-item {
+    display: flex;             /* 플렉스박스: 이모지와 텍스트를 가로로 배치 */
+    align-items: center;       /* 세로 중앙 정렬 */
+    gap: 1rem;                /* 요소 간 간격 */
+    padding: 1.5rem;          /* 안쪽 여백 */
+    background: var(--gray-50); /* 배경색: 연한 회색 */
+    border-radius: var(--radius-lg); /* 둥근 모서리 */
+    border: 1px solid var(--gray-200); /* 테두리 */
+    transition: var(--transition); /* 부드러운 변화 */
+}
+
+.contact-item:hover {
+    transform: translateX(10px); /* 호버 시: 오른쪽으로 10px 이동 */
+    box-shadow: var(--shadow-md); /* 그림자 효과 */
+}
+
+.contact-icon {
+    font-size: 2rem;          /* 이모지 크기 */
+}
+
+.contact-details h3 {
+    font-size: 1.125rem;      /* 제목 크기 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+    color: var(--gray-800);    /* 제목 색상: 진한 회색 */
+    margin-bottom: 0.25rem;    /* 아래 여백 */
+}
+
+.contact-details p,
+.contact-details a {
+    color: var(--gray-600);    /* 텍스트 색상: 중간 회색 */
+    text-decoration: none;     /* 밑줄 제거 */
+}
+
+.contact-details a:hover {
+    color: var(--primary);     /* 호버 시: 파란색 */
+}
+
+/* 폼 스타일 */
+.contact-form h3 {
+    font-size: 1.5rem;        /* 제목 크기 */
+    font-weight: 600;          /* 폰트 굵기: 중간 굵게 */
+    color: var(--gray-800);    /* 제목 색상: 진한 회색 */
+    margin-bottom: 1.5rem;     /* 아래 여백 */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;     /* 아래 여백 */
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;               /* 너비: 부모 요소의 100% */
+    padding: 0.75rem 1rem;     /* 안쪽 여백 */
+    border: 2px solid var(--gray-200); /* 테두리 */
+    border-radius: var(--radius-md); /* 둥근 모서리 */
+    font-size: 1rem;          /* 폰트 크기 */
+    transition: var(--transition); /* 부드러운 변화 */
+    background: var(--white);  /* 배경색: 흰색 */
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;             /* 기본 포커스 아웃라인 제거 */
+    border-color: var(--primary); /* 포커스 시: 파란색 테두리 */
+    box-shadow: 0 0 0 3px var(--primary-light); /* 포커스 링: 연한 파란색 */
+}
+
+.form-textarea {
+    min-height: 120px;         /* 최소 높이 */
+    resize: vertical;          /* 세로 크기 조정만 가능 */
 }
 
 /* ========================================
    푸터 스타일
    ======================================== */
-footer {
+.footer {
+    background: var(--gray-800); /* 배경색: 매우 진한 회색 */
+    color: var(--white);        /* 텍스트 색상: 흰색 */
+    padding: 3rem 0 1rem;       /* 위아래 패딩 */
+}
+
+.footer-content {
     text-align: center;         /* 텍스트 중앙 정렬 */
-    padding: 2rem 0;            /* 위아래 패딩: 2rem = 32px */
-    background-color: #1F2937;  /* 배경색: 매우 진한 회색 (페이지 끝임을 시각적으로 표현) */
-    color: #ffffff;             /* 텍스트 색상: 흰색 (진한 배경에 대비) */
+    margin-bottom: 2rem;        /* 아래 여백 */
+}
+
+.footer-logo {
+    display: flex;              /* 플렉스박스: 이모지와 텍스트를 가로로 배치 */
+    align-items: center;        /* 세로 중앙 정렬 */
+    justify-content: center;    /* 가로 중앙 정렬 */
+    gap: 0.5rem;               /* 요소 간 간격 */
+    font-weight: 700;           /* 폰트 굵기: 굵게 */
+    font-size: 1.25rem;        /* 폰트 크기 */
+    margin-bottom: 1rem;        /* 아래 여백 */
+}
+
+.footer-text {
+    color: var(--gray-300);     /* 텍스트 색상: 연한 회색 */
+    margin-bottom: 1.5rem;      /* 아래 여백 */
+}
+
+.footer-links {
+    display: flex;              /* 플렉스박스: 링크들을 가로로 배치 */
+    justify-content: center;    /* 가로 중앙 정렬 */
+    gap: 2rem;                 /* 링크 간 간격 */
+    margin-bottom: 2rem;        /* 아래 여백 */
+}
+
+.footer-link {
+    color: var(--gray-300);     /* 링크 색상: 연한 회색 */
+    text-decoration: none;      /* 밑줄 제거 */
+    transition: var(--transition); /* 부드러운 변화 */
+}
+
+.footer-link:hover {
+    color: var(--white);        /* 호버 시: 흰색 */
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--gray-700); /* 상단 테두리: 구분선 */
+    padding-top: 1rem;          /* 상단 패딩 */
+    text-align: center;         /* 텍스트 중앙 정렬 */
+    color: var(--gray-400);     /* 텍스트 색상: 중간 회색 */
 }
 
 /* ========================================
-   반응형 디자인 (모바일 대응)
+   반응형 디자인
    ======================================== */
 @media (max-width: 768px) {
-    /* 화면 너비가 768px 이하일 때 적용되는 스타일 (태블릿/모바일) */
+    /* 태블릿/모바일: 768px 이하 */
     
-    /* 네비게이션을 세로로 배치 */
-    nav ul {
-        flex-direction: column;  /* 플렉스 방향을 세로로 변경 */
-        align-items: center;     /* 세로 정렬 시 중앙 정렬 */
-        gap: 1rem;              /* 간격을 줄임: 1rem = 16px */
+    .nav-menu {
+        display: none;          /* 모바일에서는 네비게이션 숨김 */
     }
     
-    /* Hero 제목 크기 조정 */
-    #hero h1 {
-        font-size: 2rem;        /* 모바일에서는 제목을 작게: 2rem = 32px */
+    .hero-container {
+        grid-template-columns: 1fr; /* 1개 컬럼: 세로 배치 */
+        text-align: center;     /* 텍스트 중앙 정렬 */
+        gap: 2rem;             /* 간격 줄임 */
     }
     
-    /* 섹션 패딩 조정 */
-    section {
-        padding: 2rem 0;        /* 모바일에서는 여백을 줄임: 2rem = 32px */
+    .hero-title {
+        font-size: 2.5rem;     /* 제목 크기 줄임 */
     }
+    
+    .hero-visual {
+        height: 300px;         /* 시각적 요소 높이 줄임 */
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr; /* 1개 컬럼: 세로 배치 */
+        gap: 2rem;             /* 간격 줄임 */
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr; /* 1개 컬럼: 세로 배치 */
+        gap: 2rem;             /* 간격 줄임 */
+    }
+    
+    .hero-actions {
+        justify-content: center; /* 버튼 중앙 정렬 */
+    }
+    
+    .section-title {
+        font-size: 2rem;       /* 섹션 제목 크기 줄임 */
+    }
+}
+
+@media (max-width: 480px) {
+    /* 모바일: 480px 이하 */
+    
+    .container {
+        padding: 0 1rem;       /* 패딩 줄임 */
+    }
+    
+    .hero-title {
+        font-size: 2rem;       /* 제목 크기 더 줄임 */
+    }
+    
+    .btn {
+        width: 100%;           /* 버튼 너비: 전체 너비 */
+        margin-bottom: 0.5rem; /* 아래 여백 */
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr; /* 1개 컬럼: 세로 배치 */
+    }
+}
+
+/* ========================================
+   애니메이션 및 인터랙션
+   ======================================== */
+/* 스크롤 시 요소들이 아래에서 위로 나타나는 효과 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;             /* 시작: 투명 */
+        transform: translateY(30px); /* 시작: 아래에서 30px */
+    }
+    to {
+        opacity: 1;             /* 끝: 완전 불투명 */
+        transform: translateY(0); /* 끝: 원래 위치 */
+    }
+}
+
+/* 스크롤 스파이 효과를 위한 클래스 */
+.nav-link.active {
+    color: var(--primary);     /* 활성 링크 색상: 파란색 */
+}
+
+.nav-link.active::after {
+    width: 100%;               /* 활성 링크 밑줄: 전체 너비 */
+}
+
+/* 포커스 스타일 (접근성) */
+.btn:focus,
+.form-input:focus,
+.form-textarea:focus,
+.nav-link:focus {
+    outline: 2px solid var(--primary); /* 포커스 아웃라인: 파란색 2px */
+    outline-offset: 2px;               /* 아웃라인 오프셋: 2px */
+}
+
+/* 로딩 애니메이션 */
+.loading {
+    opacity: 0;                /* 초기: 투명 */
+    animation: fadeInUp 0.6s ease-out forwards; /* 애니메이션 적용 */
 }
 
 /* ========================================
    추가 학습 포인트
    ======================================== */
 /* 
-1. CSS 단위:
-   - px: 픽셀 (고정 크기)
-   - rem: 루트 요소(html) 폰트 크기 기준 (1rem = 16px)
-   - em: 부모 요소 폰트 크기 기준
-   - %: 부모 요소 기준 백분율
-   - vw/vh: 뷰포트 너비/높이 기준
+1. CSS 변수 (Custom Properties):
+   - :root에서 정의한 변수를 var()로 사용
+   - 테마 변경이나 일관된 스타일링에 유용
+   - 예: var(--primary), var(--shadow-md)
 
-2. CSS 색상:
-   - #374151: 16진수 색상 코드
-   - rgb(55, 65, 81): RGB 색상
-   - rgba(0,0,0,0.1): RGB + 투명도
+2. CSS Grid vs Flexbox:
+   - Grid: 2차원 레이아웃 (행과 열)
+   - Flexbox: 1차원 레이아웃 (행 또는 열)
+   - 상황에 맞게 적절히 선택하여 사용
 
-3. CSS 레이아웃:
-   - Flexbox: 1차원 레이아웃 (가로 또는 세로)
-   - Grid: 2차원 레이아웃 (가로와 세로 모두)
+3. CSS 애니메이션:
+   - @keyframes로 커스텀 애니메이션 정의
+   - transform과 transition으로 부드러운 효과
+   - animation-delay로 순차적 애니메이션
 
 4. 반응형 디자인:
-   - 모바일 우선 설계
+   - 모바일 우선 설계 (Mobile First)
    - 미디어 쿼리로 화면 크기별 스타일 적용
+   - 유연한 그리드 시스템 활용
+
+5. 접근성:
+   - 포커스 스타일로 키보드 네비게이션 지원
+   - 시맨틱 HTML로 스크린 리더 지원
+   - 색상 대비로 가독성 확보
+
+6. 이모지 활용:
+   - 텍스트와 자연스럽게 어우러지도록 크기 조정
+   - 의미있는 이모지로 직관적 이해 도움
+   - 애니메이션으로 동적인 느낌 추가
 */
+
