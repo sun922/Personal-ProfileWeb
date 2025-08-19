@@ -167,7 +167,7 @@ body {
    ======================================== */
 .hero {
     padding: 8rem 0 4rem;    /* 위아래 패딩: 헤더 높이만큼 위쪽 여백 추가 */
-    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);  /* 파란색 계열 */
+    background: linear-gradient(135deg, #9ed2ff 0%, #f5f5f6 100%);  /* 파란색 계열 */
     position: relative;       /* 위치 기준점: 플로팅 카드용 */
     overflow: hidden;         /* 넘치는 요소 숨김 */
 }
@@ -272,32 +272,66 @@ body {
     height: 400px;            /* 높이: 고정 */
 }
 
+/* 원형 사진: 배경 위(z:5), 카드 아래(z:10) */
+.hero-portrait {
+    position: absolute;
+    right: 20%;
+    top: 1%;
+    width: clamp(260px, 30vw, 420px);
+    height: clamp(260px, 30vw, 420px);
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    z-index: 5; /* ↑ 여기 값만 키우면 배경 위로 올라옵니다 */
+  }
+  .hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* 꽉 채우되 잘릴 수 있음 */
+    object-position: 60% 45%; /* ← 얼굴이 가운데 오도록 이동(수치 조정) */
+  }
+  
+  /* 카드가 사진 위로 오게 */
+  .floating-card { z-index: 10; }
+
+/* 반응형: 모바일에서 크기/위치 조정 */
+@media (max-width: 768px) {
+	.hero-portrait {
+		width: 220px;
+		height: 220px;
+		right: 50%;
+		top: 0;
+		transform: translateX(50%); /* 화면 중앙 쪽으로 이동 */
+		opacity: 0.95;              /* 살짝 투명(겹침 완화) */
+	}
+}
+
 .floating-card {
     position: absolute;        /* 절대 위치: 부모 요소 기준 */
     background: var(--white);  /* 배경색: 흰색 */
-    padding: 1.5rem;          /* 안쪽 여백 */
+    padding: 1rem;          /* 안쪽 여백 */
     border-radius: var(--radius-xl); /* 둥근 모서리 */
     box-shadow: var(--shadow-lg); /* 그림자 효과 */
-    font-size: 2rem;          /* 이모지 크기 */
+    font-size: 4rem;          /* 이모지 크기 */
     animation: float 6s ease-in-out infinite; /* 플로팅 애니메이션 */
 }
 
 /* 각 카드의 위치와 애니메이션 지연 시간 */
 .card-1 {
-    top: 20%;                 /* 위에서 20% */
-    left: 10%;                /* 왼쪽에서 10% */
+    top: 10%;                 /* 위에서 20% */
+    left: -15%;                /* 왼쪽에서 10% */
     animation-delay: 0s;      /* 애니메이션 지연: 없음 */
 }
 
 .card-2 {
-    top: 50%;                 /* 위에서 50% */
-    right: 20%;               /* 오른쪽에서 20% */
+    top: 30%;                 /* 위에서 50% */
+    right: 10%;               /* 오른쪽에서 20% */
     animation-delay: 2s;      /* 애니메이션 지연: 2초 */
 }
 
 .card-3 {
-    bottom: 20%;              /* 아래에서 20% */
-    left: 30%;                /* 왼쪽에서 30% */
+    bottom: -13%;              /* 아래에서 20% */
+    left: 3%;                /* 왼쪽에서 30% */
     animation-delay: 4s;      /* 애니메이션 지연: 4초 */
 }
 
