@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- HTML5 문서 타입 선언: 최신 HTML 표준을 사용한다는 의미 -->
+<html lang="ko">
+<!-- html 태그: 웹페이지의 루트 요소, lang="ko"는 한국어 페이지임을 브라우저에게 알림 -->
+
+<head>
+    <!-- head 태그: 페이지의 메타데이터(제목, 문자인코딩, 스타일시트 링크 등)를 포함 -->
+    
+    <meta charset="UTF-8">
+    <!-- 문자 인코딩 설정: UTF-8은 한글, 이모지 등 다양한 문자를 지원하는 표준 인코딩 -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 뷰포트 설정: 모바일 기기에서 페이지가 제대로 보이도록 하는 중요한 메타태그
+         width=device-width: 기기의 실제 너비에 맞춤
+         initial-scale=1.0: 초기 확대/축소 비율을 1.0으로 설정 -->
+    
+    <title>내 프로필 페이지</title>
+    <!-- 페이지 제목: 브라우저 탭에 표시되고, 북마크할 때 사용됨 -->
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- 외부 CSS 파일 연결: rel="stylesheet"는 스타일시트 파일임을 명시
+         href는 CSS 파일의 경로를 지정 -->
+</head>
+
+<body>
+    <!-- body 태그: 웹페이지에 실제로 보이는 모든 콘텐츠를 포함 -->
+    
+    <!-- 헤더 섹션: 페이지 상단의 네비게이션과 로고 등을 포함 -->
+    <header>
+        <!-- header 태그: 페이지나 섹션의 머리말을 나타내는 시멘틱 태그 -->
+        
+        <nav>
+            <!-- nav 태그: 네비게이션 메뉴를 나타내는 시멘틱 태그 -->
+            
+            <ul>
+                <!-- ul 태그: 순서가 없는 목록을 만듦 (unordered list) -->
+                
+                <li><a href="#hero">홈</a></li>
+                <!-- li 태그: 목록의 각 항목 (list item)
+                     a 태그: 링크를 만듦, href="#hero"는 같은 페이지의 hero 섹션으로 이동
+                     #은 페이지 내 앵커 링크를 의미 -->
+                
+                <li><a href="#about">소개</a></li>
+                <!-- about 섹션으로 이동하는 링크 -->
+                
+                <li><a href="#skills">기술</a></li>
+                <!-- skills 섹션으로 이동하는 링크 -->
+                
+                <li><a href="#contact">연락처</a></li>
+                <!-- contact 섹션으로 이동하는 링크 -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 메인 콘텐츠 영역: 페이지의 핵심 내용을 포함 -->
+    <main>
+        <!-- main 태그: 페이지의 주요 콘텐츠를 나타내는 시멘틱 태그
+             한 페이지에 하나만 사용 가능하며, 스크린 리더가 메인 콘텐츠를 식별하는 데 도움 -->
+        
+        <!-- Hero 섹션: 방문자에게 첫인상을 주는 중요한 섹션 -->
+        <section id="hero">
+            <!-- section 태그: 콘텐츠의 논리적 구분을 나타내는 시멘틱 태그
+                 id="hero"는 이 섹션을 고유하게 식별하는 식별자 -->
+            
+            <h1>안녕하세요!👋</h1>
+            <!-- h1 태그: 페이지의 가장 중요한 제목, SEO와 접근성에서 매우 중요
+                 한 페이지에 하나만 사용하는 것이 좋음 -->
+            
+            <p>웹 개발을 공부하고 있는 학생입니다</p>
+            <!-- p 태그: 문단을 나타내는 태그, 텍스트 콘텐츠를 구조화 -->
+        </section>
+
+        <!-- About 섹션: 자기소개를 담는 섹션 -->
+        <section id="about">
+            <h2>About Me</h2>
+            <!-- h2 태그: h1 다음 단계의 제목, 섹션별 소제목 역할 -->
+            
+            <p>웹 개발에 관심이 많고, 사용자 경험을 개선하는 것에 열정을 가지고 있습니다.</p>
+        </section>
+
+        <!-- Skills 섹션: 보유 기술을 나열하는 섹션 -->
+        <section id="skills">
+            <h2>Skills</h2>
+            
+            <ul>
+                <!-- 기술 목록을 순서 없는 목록으로 표시 -->
+                
+                <li>HTML & CSS</li>
+                <!-- 각 기술을 목록 항목으로 표시 -->
+                
+                <li>JavaScript (학습 중)</li>
+                <!-- 현재 학습 중인 기술임을 명시 -->
+                
+                <li>Git & GitHub</li>
+                <!-- 버전 관리 도구 -->
+            </ul>
+        </section>
+
+        <!-- Contact 섹션: 연락처 정보를 제공하는 섹션 -->
+        <section id="contact">
+            <h2>Contact</h2>
+            
+            <p>📧 이메일: your.email@example.com</p>
+            <!-- 이모지를 사용해 시각적으로 구분하기 쉽게 만듦 -->
+            
+            <p>🐙 GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+            <!-- 외부 링크: href에 전체 URL을 입력하여 다른 웹사이트로 이동 -->
+        </section>
+    </main>
+
+    <!-- 푸터: 페이지 하단의 저작권 정보 등을 포함 -->
+    <footer>
+        <!-- footer 태그: 페이지나 섹션의 바닥글을 나타내는 시멘틱 태그 -->
+        
+        <p>&copy; 2024 내 이름. All rights reserved.</p>
+        <!-- &copy;는 저작권 기호(©)를 나타내는 HTML 엔티티 -->
+    </footer>
+</body>
+</html>
