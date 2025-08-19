@@ -718,6 +718,55 @@ body {
     animation: fadeInUp 0.6s ease-out forwards; /* 애니메이션 적용 */
 }
 
+/* 푸터 버튼을 링크처럼 보이게 */
+.link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .modal {
+    border: none;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    /* max-height 제거 → 모달 자체는 내용에 따라 늘어남 */
+    box-shadow: var(--shadow-xl);
+    position: fixed;
+    margin: 0;
+    top: 20vh;                  /* 위쪽 여백 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    overflow: hidden;           /* 둥근 모서리 안쪽으로 내용 잘리게 */
+  }
+  .modal::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .modal-box {
+    padding: 2rem;
+  }
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+  }
+  .modal-content {
+    color: var(--gray-600);
+    line-height: 1.5;
+  
+    max-height: 50vh;           /* 브라우저 70%까지만 내용 표시 */
+    overflow-y: auto;           /* 세로 스크롤은 여기서만 */
+    overflow-x: hidden;         /* 가로 스크롤은 없앰 */
+    padding: 1rem;              /* 안쪽 여백 */
+  }
+  .modal-actions {
+    margin-top: 1rem;
+    text-align: right;
+  }
 /* ========================================
    추가 학습 포인트
    ======================================== */
